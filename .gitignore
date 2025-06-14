@@ -1,0 +1,44 @@
+# Archivos compilados
+*.class
+
+# Archivos de construcción
+target/
+build/
+out/
+bin/
+
+# Archivos de IDE
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+.vscode/
+nbproject/
+nb-configuration.xml
+
+# Archivos de configuración local
+*.properties
+!src/main/resources/*.properties
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+*~
+
+# Archivos específicos de Mac
+.DS_Store
+
+# Archivos específicos de Windows
+Thumbs.db
+
+# Archivos de Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# Archivos de dependencias
+node_modules/
