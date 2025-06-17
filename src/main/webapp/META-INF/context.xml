@@ -10,7 +10,9 @@
         username="root"
         password=""
         driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost:3307/myvirtualpharmacy?serverTimezone=UTC"
+        url="jdbc:mysql://localhost:3307/myvirtualpharmacy?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"
         validationQuery="SELECT 1"
-        testOnBorrow="true"/>
+        testOnBorrow="true"
+        removeAbandonedOnBorrow="true"
+        removeAbandonedTimeout="60"/>
 </Context>

@@ -39,6 +39,9 @@ public class Rol {
     }
 
     public void setNombre(String nombre) {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede ser nulo o vacío");
+        }
         this.nombre = nombre;
     }
 
@@ -55,6 +58,9 @@ public class Rol {
     }
 
     public void setNivelAcceso(int nivelAcceso) {
+        if (nivelAcceso < 1 || nivelAcceso > 10) {
+            throw new IllegalArgumentException("El nivel de acceso debe estar entre 1 y 10");
+        }
         this.nivelAcceso = nivelAcceso;
     }
 
