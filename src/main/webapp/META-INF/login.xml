@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/virtual-pharmacy">
+<Context path="/virtual-pharmacy" docBase="virtual-pharmacy" reloadable="true">
     <Resource
         name="jdbc/VirtualPharmacyDB"
         auth="Container"
@@ -10,7 +10,5 @@
         username="root"
         password=""
         driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost:3307/myvirtualpharmacy?serverTimezone=UTC"
-        validationQuery="SELECT 1"
-        testOnBorrow="true"/>
+        url="jdbc:mysql://localhost:3307/myvirtualpharmacy?serverTimezone=UTC"/>
 </Context>

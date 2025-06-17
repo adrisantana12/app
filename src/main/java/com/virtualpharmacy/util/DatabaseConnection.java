@@ -1,23 +1,44 @@
 package com.virtualpharmacy.util;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/myvirtualpharmacy";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final Logger LOGGER = Logger.getLogger(DatabaseConnection.class.getName());
+    private static final String JNDI_NAME = "java:comp/env/jdbc/VirtualPharmacyDB";
+
+    private static DataSource dataSource;
 
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Context initContext = new InitialContext();
+            dataSource = (DataSource) initContext.lookup(JNDI_NAME);
+        } catch (NamingException e) {
+            LOGGER.log(Level.SEVERE, "Error inicializando la conexión a la base de datos", e);
+            throw new RuntimeException("No se pudo inicializar la conexión a la base de datos", e);
         }
     }
 
+    private DatabaseConnection() {
+        // Constructor privado para evitar instanciación
+    }
+
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        try {
+            Connection conn = dataSource.getConnection();
+            if (conn == null) {
+                throw new SQLException("No se pudo obtener una conexión del pool");
+            }
+            return conn;
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error obteniendo conexión de la base de datos", e);
+            throw e;
+        }
     }
 }
